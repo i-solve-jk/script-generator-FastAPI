@@ -1,0 +1,15 @@
+# Environment and secrets (do not commit)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__
+*.py[cod]
+.venv
+venv
+*.egg-info
+
+# Frontend (optional; frontend/ has its own)
+node_modules
+dist
