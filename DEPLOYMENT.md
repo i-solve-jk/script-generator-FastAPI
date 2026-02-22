@@ -42,10 +42,8 @@ CORS is already configured to allow any origin (`allow_origins=["*"]`), so brows
 
 The **generate-video** endpoint can run for a long time (it polls Leonardo/Replicate until the video is ready, up to `VIDEO_MAX_WAIT` seconds, default 900).
 
-- **Vercel limits:** On the Pro plan, the maximum function duration is **800 seconds** (~13 minutes). The default in `vercel.json` is **300 seconds** (5 minutes).
-- If video jobs often take longer than 5 minutes, either:
-  - Increase `maxDuration` in `vercel.json` (e.g. to `800` on Pro), and/or
-  - Lower `VIDEO_MAX_WAIT` in env vars so the backend stops polling earlier and returns a timeout error instead of hanging.
+- **Vercel limits:** Default function duration is 300s (5 min); Pro/Enterprise can set up to 800s. Set **Settings → Functions → Default Function Max Duration** in the Vercel dashboard if you need longer runs.
+- If video jobs often take longer than 5 minutes, either increase that default in the dashboard (e.g. to 800 on Pro) and/or lower `VIDEO_MAX_WAIT` in env vars so the backend stops polling earlier and returns a timeout error instead of hanging.
 
 For very long or heavy video workloads, consider running the API on a platform with higher or no request timeout (e.g. Railway, Render, Fly.io) and keep the frontend on Vercel.
 
